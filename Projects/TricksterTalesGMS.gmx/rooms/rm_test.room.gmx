@@ -42,16 +42,15 @@
   </backgrounds>
   <views>
     <view visible="-1" objName="obj_player" xview="0" yview="0" wview="320" hview="240" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_ground" x="256" y="208" name="inst_C7007F59" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground" x="208" y="192" name="inst_37E73146" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground" x="208" y="208" name="inst_258B9CEB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground" x="160" y="176" name="inst_50E24D33" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -103,7 +102,6 @@
     <tile bgName="tiles_ground" x="112" y="224" w="16" h="16" xo="82" yo="42" id="10000187" name="inst_817A1960" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tiles_ground" x="160" y="224" w="16" h="16" xo="82" yo="42" id="10000188" name="inst_ABECAAA6" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tiles_ground" x="208" y="224" w="16" h="16" xo="82" yo="42" id="10000189" name="inst_31C804D7" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tiles_ground" x="256" y="224" w="16" h="16" xo="82" yo="42" id="10000190" name="inst_A55F0814" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tiles_ground" x="112" y="208" w="16" h="16" xo="22" yo="42" id="10000191" name="inst_6B50B584" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tiles_ground" x="160" y="192" w="16" h="16" xo="22" yo="42" id="10000192" name="inst_D6FC90F7" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tiles_ground" x="160" y="208" w="16" h="16" xo="22" yo="42" id="10000193" name="inst_0124F2C5" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -112,7 +110,7 @@
     <tile bgName="tiles_ground" x="112" y="192" w="16" h="16" xo="22" yo="62" id="10000196" name="inst_7466ACC1" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tiles_ground" x="160" y="176" w="16" h="16" xo="22" yo="62" id="10000197" name="inst_99F542BC" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tiles_ground" x="208" y="192" w="16" h="16" xo="22" yo="62" id="10000198" name="inst_9597AF30" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tiles_ground" x="256" y="208" w="16" h="16" xo="22" yo="62" id="10000199" name="inst_DFA9625F" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tiles_ground" x="256" y="224" w="16" h="16" xo="22" yo="2" id="10000200" name="inst_8DFAF22C" depth="-1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
