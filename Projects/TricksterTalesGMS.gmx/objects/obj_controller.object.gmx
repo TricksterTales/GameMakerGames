@@ -25,9 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Hide
+            <string>/// Surround the room
 
-visible = false;
+var r = 16;
+var w = ceil( room_width / r );
+var h = ceil( room_height / r );
+
+// Place blocks on the top and bottom
+for( i = 0; i &lt; w; ++i ) {
+    instance_create( i * r, -r, obj_block );
+    instance_create( i * r, h * r, obj_block );
+}
+
+// Place on the sides
+for( i = 0; i &lt; h; ++i ) {
+    instance_create( -r, i * r, obj_block );
+    instance_create( w * r, i * r, obj_block );
+}
 </string>
           </argument>
         </arguments>
@@ -48,24 +62,110 @@ visible = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Surround the room
+            <string>/// Maximize fps
 
-var r = 16;
-var w = ceil( room_width / r );
-var h = ceil( room_height / r );
+// Max ball count
+max_ball = 50;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Maximize fps
 
-// Place blocks on the top and bottom
-for( i = 0; i &lt; w; ++i ) {
-    instance_create( i * r, -r, obj_ground );
-    instance_create( i * r, h * r, obj_ground );
-}
-
-// Place on the sides
-for( i = 0; i &lt; h; ++i ) {
-    instance_create( -r, i * r, obj_ground );
-    instance_create( w * r, i * r, obj_ground );
+// Reduce number of balls
+if( instance_number( obj_ball ) &gt; max_ball ) {
+    var num = instance_number( obj_ball );
+    var delete = num - max_ball;
+    var obj = noone;
+    var counter = 0;
+    while( delete &gt; 0 ) {
+        delete--;
+        obj = instance_find( obj_ball, counter );
+        if( instance_exists( obj ) ) {
+            with( obj ) {
+                instance_destroy();
+                num--;
+            }
+            obj = -1;
+        } else {
+            counter++;
+            delete++;
+        }
+        if( counter &gt;= num ) {
+            break;
+        }
+    }
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw the fps
+
+draw_set_halign( fa_left );
+draw_set_valign( fa_top );
+draw_text( 0, 0, "FPS: " + string( fps ) + "/" + string( room_speed) );
+draw_text( 0, 16, "Balls: " + string( instance_number( obj_ball ) ) +
+    "/" + string( max_ball ) );
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Do nothing</string>
           </argument>
         </arguments>
       </action>
