@@ -108,18 +108,17 @@ if( facing == -1 ) {
             <kind>1</kind>
             <string>/// Update stuffs
 
-var k_left = keyboard_check(vk_left);
-var k_right = keyboard_check(vk_right);
-var k_up = keyboard_check(vk_up);
-var k_down = keyboard_check(vk_down);
-var k_fire = keyboard_check(vk_space);
+var k_hor = scr_input_getHor();
+var k_ver = scr_input_getVert();
+var k_jump = scr_input_getButton( BTN_JUMP );
+var k_fire = scr_input_getButton( BTN_FIRE );
 
 // Falling or jumping?
 if( place_meeting( x, y+1, obj_ground ) ) {
     onground = true;
     vspd = 0;
     vdebt = 0;
-    if( k_up &amp;&amp; !k_down ) {
+    if( k_jump ) {
         vspd = -jspd;
     }
 } else {
@@ -131,16 +130,7 @@ if( place_meeting( x, y+1, obj_ground ) ) {
 }
 
 // Side to side
-if( k_left xor k_right ) {
-    if( k_left ) {
-        hspd = -wspd;
-    }
-    if( k_right ) {
-        hspd = wspd;
-    }
-} else {
-    hspd = 0;
-}
+hspd = wspd * k_hor;
 
 // Facing where you're going
 if( hspd != 0 ) {
