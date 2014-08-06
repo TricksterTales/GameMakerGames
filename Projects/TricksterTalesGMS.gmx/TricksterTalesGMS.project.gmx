@@ -10,23 +10,34 @@
     <sprite>sprites\spr_ground</sprite>
     <sprite>sprites\spr_controllers</sprite>
     <sprite>sprites\spr_default</sprite>
-    <sprite>sprites\spr_ball</sprite>
+    <sprite>sprites\spr_bullet</sprite>
+    <sprite>sprites\spr_impacth</sprite>
+    <sprite>sprites\spr_impactv</sprite>
+    <sprite>sprites\spr_shell</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tiles_ground</background>
   </backgrounds>
   <paths name="paths"/>
-  <fonts name="fonts"/>
+  <scripts name="scripts">
+    <script>scripts\scr_max_count.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_controller</object>
-    <object>objects\obj_thing</object>
-    <object>objects\obj_ball</object>
     <objects name="Ground">
       <object>objects\obj_ground</object>
       <objects name="Solid">
         <object>objects\obj_ground_solid</object>
         <object>objects\obj_block</object>
+      </objects>
+    </objects>
+    <objects name="Things">
+      <object>objects\obj_thing</object>
+      <objects name="Bullet">
+        <object>objects\obj_bullet</object>
+        <object>objects\obj_impact</object>
+        <object>objects\obj_shell</object>
       </objects>
     </objects>
   </objects>
