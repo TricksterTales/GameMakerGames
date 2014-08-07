@@ -24,5 +24,5 @@ if( global._input_type == CONTROLLER ) {
 } else {
     // Keyboard is default
     global._input_buttons[BTN_JUMP] = keyboard_check(vk_up);
-    global._input_buttons[BTN_JUMP] = keyboard_check(vk_space);
+    global._input_buttons[BTN_FIRE] = keyboard_check(vk_space);
 }
