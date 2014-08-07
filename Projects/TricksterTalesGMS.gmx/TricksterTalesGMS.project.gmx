@@ -22,12 +22,15 @@
   <scripts name="scripts">
     <scripts name="Input">
       <script>scripts\scr_input_begin.gml</script>
-      <script>scripts\scr_input_firstController.gml</script>
+      <script>scripts\scr_input_checkController.gml</script>
       <script>scripts\scr_input_getButton.gml</script>
       <script>scripts\scr_input_getHor.gml</script>
       <script>scripts\scr_input_getVert.gml</script>
       <script>scripts\scr_input_setInput.gml</script>
       <script>scripts\scr_input_setThreshold.gml</script>
+      <script>scripts\scr_input_tryController.gml</script>
+      <script>scripts\scr_input_updateButtons.gml</script>
+      <script>scripts\scr_show_message.gml</script>
     </scripts>
     <script>scripts\scr_max_count.gml</script>
   </scripts>
@@ -53,9 +56,10 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
-  <constants number="4">
+  <constants number="5">
     <constant name="KEYBOARD">1</constant>
-    <constant name="CONTROLER">2</constant>
+    <constant name="CONTROLLER">2</constant>
+    <constant name="KEYCONT">3</constant>
     <constant name="BTN_JUMP">1</constant>
     <constant name="BTN_FIRE">2</constant>
   </constants>

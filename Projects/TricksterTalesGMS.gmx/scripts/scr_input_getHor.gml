@@ -4,13 +4,22 @@
 var horiz = 0;
 
 //Check Input
-if( global._input_type == CONTROLER ) {
-    var cont = scr_input_firstController();
+if( global._input_type == CONTROLLER ) {
+    var cont = global._input_controller;
     if( cont == -1 ) {
         horiz = 0;
     } else {
         // Left stick
         horiz = gamepad_axis_value( cont, gp_axislh );
+        
+        // Also try the D-Pad
+        horiz += gamepad_button_check( cont, gp_padr );
+        horiz -= gamepad_button_check( cont, gp_padl );
+        
+        // Don't allow past 1
+        if( abs( horiz ) > 1 ) {
+            horiz = sign( horiz );
+        }
     }
 } else {
     // Keyboard is default
