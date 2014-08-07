@@ -120,14 +120,12 @@ scr_max_count( obj_impact, max_impact );
             <kind>1</kind>
             <string>/// Update input
 
-// Check for controller
-scr_input_checkController();
-
-// Try to switch to it, only will if using KECONT
+// Check the controller status
 if( fps != 0 ) {
     inputTime += 1 / fps;
 }
 if( inputTime &gt;= 1.0 ) {
+    scr_input_checkController();
     scr_input_tryController();
     inputTime -= 1.0;
 }
