@@ -27,21 +27,18 @@
             <kind>1</kind>
             <string>/// Start the variables
 
-grav = 0.01;
 hspd = 0;
 hdebt = 0;
 vspd = 0;
 vdebt = 0;
 vmax = 5;
 facing = 1;
-onground = false;
 
 // Step Event variables
 h = 0;
 v = 0;
 
 // Bullet physics
-frict = 0.1;
 hbounce = 0.999;
 vbounce = 0.999;
 phspd = 0;
@@ -114,22 +111,6 @@ if( place_meeting( x, y, obj_ground ) ) {
 // Previous speeds
 phspd = hspd;
 pvspd = vspd;
-
-// Falling?
-if( vspd &gt;= 0 &amp;&amp; place_meeting( x, y+1, obj_ground ) ) {
-    onground = true;
-    vspd = 0;
-    vdebt = 0;
-} else {
-    onground = false;
-    vspd += grav;
-    if( vspd &gt; vmax ) {
-        vspd = vmax;
-    }
-    if( vspd &gt; 0 &amp;&amp; place_meeting( x, y+1, obj_ground ) ) {
-        vspd = 0;
-    }
-}
 
 // Facing where you're going
 if( hspd != 0 ) {
@@ -206,20 +187,12 @@ if( ( (vspd == 0 &amp;&amp; pvspd != 0) ||
     exit;
 }
 
-// Update ground
-onground = place_meeting( x, y+1, obj_ground );
-
 // Slow to nothing when close to zero
 if( abs( hspd ) &lt;= tooslow ) {
     hspd = 0;
 }
-if( onground &amp;&amp; abs( vspd ) &lt;= tooslow ) {
+if( abs( vspd ) &lt;= tooslow ) {
     vspd = 0;
-}
-
-// Friction on ground
-if( onground &amp;&amp; vspd &gt;= 0 ) {
-    hspd = hspd * (1 - frict);
 }
 
 // Die after stopped a bit

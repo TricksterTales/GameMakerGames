@@ -24,6 +24,8 @@
       <script>scripts\scr_input_begin.gml</script>
       <script>scripts\scr_input_checkController.gml</script>
       <script>scripts\scr_input_getButton.gml</script>
+      <script>scripts\scr_input_getButtonPressed.gml</script>
+      <script>scripts\scr_input_getButtonReleased.gml</script>
       <script>scripts\scr_input_getHor.gml</script>
       <script>scripts\scr_input_getVert.gml</script>
       <script>scripts\scr_input_setInput.gml</script>

@@ -35,7 +35,7 @@ ddead = 10;
 dtime = 0;
 
 // Fall after time
-ffall = 4;
+ffall = 4 + random(1.0);
 ftime = 0;
 </string>
           </argument>

@@ -110,7 +110,7 @@ if( facing == -1 ) {
 
 var k_hor = scr_input_getHor();
 var k_ver = scr_input_getVert();
-var k_jump = scr_input_getButton( BTN_JUMP );
+var k_jump = scr_input_getButtonPressed( BTN_JUMP );
 var k_fire = scr_input_getButton( BTN_FIRE );
 
 // Falling or jumping?
