@@ -27,12 +27,12 @@
             <kind>1</kind>
             <string>/// Start the variables
 
-grav = 0.35;
+grav = 0.35 / room_speed;
 hspd = 0;
 hdebt = 0;
 vspd = 0;
 vdebt = 0;
-vmax = 5;
+vmax = 5 / room_speed;
 facing = 1;
 onground = false;
 
@@ -40,9 +40,6 @@ onground = false;
 h = 0;
 v = 0;
 ystep = 0;
-
-// Slope stuff
-steep = 45;
 </string>
           </argument>
         </arguments>
@@ -134,24 +131,12 @@ if( abs(hdebt) &gt;= 1 ) {
     hdebt -= sign(hdebt);
 }
 if( place_meeting( x + h, y, obj_ground ) ) {
-    ystep = 0;
-    while( place_meeting( x + h, y - ystep, obj_ground ) ) {
-        ++ystep;
-        if( radtodeg( arctan2( ystep, h ) ) &gt; steep ) {
-            ystep = 0;
-            break;
-        }
+    while( !place_meeting( x + sign(h), y, obj_ground ) ) {
+        x += sign(h);
     }
-    if( onground &amp;&amp; !place_meeting( x + h, y - ystep, obj_ground ) ) {
-        y -= ystep;
-    } else {
-        while( !place_meeting( x + sign(h), y, obj_ground ) ) {
-            x += sign(h);
-        }
-        hspd = 0;
-        h = 0;
-        hdebt = 0;
-    }
+    hspd = 0;
+    h = 0;
+    hdebt = 0;
 }
 x += h;
 

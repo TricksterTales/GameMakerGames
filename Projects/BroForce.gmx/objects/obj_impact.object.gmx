@@ -105,17 +105,13 @@ if( facing != 0 &amp;&amp; !place_meeting( x + facing, y, obj_ground ) ) {
 }
 
 // Die after a bit
-if( fps != 0 ) {
-    dtime += 1 / fps;
-}
+dtime += 1 / room_speed;
 if( dtime &gt;= ddead ) {
     instance_destroy();
 }
 
 // Fall after a bit
-if( fps != 0 ) {
-    ftime += 1 / fps;
-}
+ftime += 1 / room_speed;
 if( ftime &gt;= ffall ) {
     var face = facing;
     instance_change( obj_shell, true );

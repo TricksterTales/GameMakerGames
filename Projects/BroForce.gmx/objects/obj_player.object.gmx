@@ -27,14 +27,14 @@
             <kind>1</kind>
             <string>/// Start the variables
 
-grav = 0.3;
-wspd = 2.5;
-jspd = 5;
+grav = 20.0 * 60 / (room_speed*room_speed);
+wspd = 144.0 / room_speed;
+jspd = 352.0 / room_speed;
 hspd = 0;
 hdebt = 0;
 vspd = 0;
 vdebt = 0;
-vmax = 5;
+vmax = 384.0 / room_speed;
 facing = 1;
 onground = false;
 
@@ -43,16 +43,12 @@ h = 0;
 v = 0;
 ystep = 0;
 
-// Slope stuff
-steep = 45;
-
 // Firing variables
-fhspd = 5;
-fhrand = 0;
-fvspd = 0;
-fvrand = 0.1;
-flen = 8;
-fdelay = 0.1;
+fhspd = 352.0 / room_speed;
+fvspd = 4.0 / room_speed;
+flen = 8.0;
+fdist = 192.0;
+fdelay = 0.15;
 ftime = 0;
 </string>
           </argument>
@@ -150,24 +146,12 @@ if( abs(hdebt) &gt;= 1 ) {
     hdebt -= sign(hdebt);
 }
 if( place_meeting( x + h, y, obj_ground ) ) {
-    ystep = 0;
-    while( place_meeting( x + h, y - ystep, obj_ground ) ) {
-        ++ystep;
-        if( radtodeg( arctan2( ystep, h ) ) &gt; steep ) {
-            ystep = 0;
-            break;
-        }
+    while( !place_meeting( x + sign(h), y, obj_ground ) ) {
+        x += sign(h);
     }
-    if( onground &amp;&amp; !place_meeting( x + h, y - ystep, obj_ground ) ) {
-        y -= ystep;
-    } else {
-        while( !place_meeting( x + sign(h), y, obj_ground ) ) {
-            x += sign(h);
-        }
-        hspd = 0;
-        h = 0;
-        hdebt = 0;
-    }
+    hspd = 0;
+    h = 0;
+    hdebt = 0;
 }
 x += h;
 
@@ -192,17 +176,20 @@ y += v;
 onground = place_meeting( x, y+1, obj_ground );
 
 // Firing a bullet
-if( fps != 0 ) {
-    ftime -= 1 / fps;
-}
+ftime -= 1 / room_speed;
 if( ftime &lt; -1 ) {
     ftime = -1;
 }
 if( k_fire &amp;&amp; ftime &lt;= 0 ) {
-    var ball = instance_create( x + facing * flen, y, obj_bullet );
-    ball.hspd = facing * (fhspd + fhrand * (random(1.01) - 0.5));
-    ball.vspd = fvspd + fvrand * (random(1.01) - 0.5);
+    var bullet = instance_create( x + facing * flen, y - 2, obj_bullet );
+    bullet.hspd = facing * fhspd;
+    bullet.vspd = fvspd;
+    bullet.ddist = fdist;
+    
+    // Allow firing again
     ftime = fdelay;
+    // Shoot the other direction now, vertically
+    fvspd = -fvspd;
 }
 </string>
           </argument>

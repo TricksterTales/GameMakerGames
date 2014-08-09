@@ -11,9 +11,6 @@
     <sprite>sprites\spr_controllers</sprite>
     <sprite>sprites\spr_default</sprite>
     <sprite>sprites\spr_bullet</sprite>
-    <sprite>sprites\spr_impacth</sprite>
-    <sprite>sprites\spr_impactv</sprite>
-    <sprite>sprites\spr_shell</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tiles_ground</background>
@@ -50,8 +47,6 @@
       <object>objects\obj_thing</object>
       <objects name="Bullet">
         <object>objects\obj_bullet</object>
-        <object>objects\obj_impact</object>
-        <object>objects\obj_shell</object>
       </objects>
     </objects>
   </objects>

@@ -27,12 +27,12 @@
             <kind>1</kind>
             <string>/// Start the variables
 
-grav = 0.3;
+grav = 24 / room_speed;
 hspd = 0;
 hdebt = 0;
 vspd = 0;
 vdebt = 0;
-vmax = 5;
+vmax = 512 / room_speed;
 facing = 1;
 onground = false;
 
@@ -41,12 +41,12 @@ h = 0;
 v = 0;
 
 // Ball physics
-frict = 0.1;
+frict = 8 / room_speed;
 hbounce = 0.4;
 vbounce = 0.4;
 phspd = 0;
 pvspd = 0;
-tooslow = 0.1;
+tooslow = 0.1 / room_speed;
 ddead = 5;
 dtime = 0;
 </string>
@@ -201,9 +201,7 @@ if( onground &amp;&amp; vspd &gt;= 0 ) {
 
 // Die after stopped a bit
 if( x == xprevious &amp;&amp; y == yprevious ) {
-    if( fps != 0 ) {
-        dtime += 1 / fps;
-    }
+    dtime += 1 / room_speed
     if( dtime &gt;= ddead ) {
         instance_destroy();
     }

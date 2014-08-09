@@ -66,8 +66,6 @@ for( i = 0; i &lt; h; ++i ) {
 
 // Max counts
 max_bullet = 30;
-max_impact = 30;
-max_shell = 10;
 </string>
           </argument>
         </arguments>
@@ -94,8 +92,6 @@ max_shell = 10;
 
 // Reduce the instance counts
 scr_max_count( obj_bullet, max_bullet );
-scr_max_count( obj_impact, max_impact );
-scr_max_count( obj_shell, max_shell );
 </string>
           </argument>
         </arguments>
@@ -121,9 +117,7 @@ scr_max_count( obj_shell, max_shell );
             <string>/// Update input
 
 // Check the controller status
-if( fps != 0 ) {
-    inputTime += 1 / fps;
-}
+inputTime += 1 / room_speed;
 if( inputTime &gt;= 1.0 ) {
     scr_input_checkController();
     scr_input_tryController();
@@ -195,12 +189,10 @@ var spacing = 16;
 draw_set_halign( fa_left );
 draw_set_valign( fa_top );
 draw_text( 0, 0 * spacing, "FPS: " + string( fps ) + "/" + string( room_speed) );
+
+// Draw the max counts
 draw_text( 0, 1 * spacing, "Bullets: " + string( instance_number( obj_bullet ) ) +
     "/" + string( max_bullet ) );
-draw_text( 0, 2 * spacing, "Impacts: " + string( instance_number( obj_impact ) ) +
-    "/" + string( max_impact ) );
-draw_text( 0, 3 * spacing, "Shells: " + string( instance_number( obj_shell ) ) +
-    "/" + string( max_shell ) );
 </string>
           </argument>
         </arguments>

@@ -27,11 +27,11 @@
             <kind>1</kind>
             <string>/// Start the variables
 
+xstr = x;
 hspd = 0;
 hdebt = 0;
 vspd = 0;
 vdebt = 0;
-vmax = 5;
 facing = 1;
 
 // Step Event variables
@@ -43,11 +43,10 @@ hbounce = 0.999;
 vbounce = 0.999;
 phspd = 0;
 pvspd = 0;
-tooslow = 0.1;
-shellspd = 1;
-impactspd = 3;
 ddead = 5;
+tooslow = 0;
 dtime = 0;
+ddist = -1;
 </string>
           </argument>
         </arguments>
@@ -139,20 +138,9 @@ if( place_meeting( x + h, y, obj_ground ) ) {
 }
 x += h;
 
-// Hit a wall, stick if fast
+// Hit a wall, destroy
 if( hspd == 0 &amp;&amp; phspd != 0 ) {
-    var face = facing;
-    if( abs( phspd ) &gt;= impactspd ) {
-        instance_change( obj_impact, true );
-        facing = face;
-    } else {
-        var spdh = -phspd * hbounce;
-        var spdv = vspd;
-        instance_change( obj_shell, true );
-        facing = face;
-        hspd = spdh;
-        vspd = spdv;
-    }
+    instance_destroy();
     exit;
 }
 
@@ -173,17 +161,10 @@ if( place_meeting( x, y + v, obj_ground ) ) {
 }
 y += v;
 
-// Hit ground or up, change to shell when slow
+// Hit ground or up, destroy
 if( ( (vspd == 0 &amp;&amp; pvspd != 0) ||
-        (vspd &gt;= 0 &amp;&amp; place_meeting( x, y+1, obj_ground )) ) &amp;&amp;
-        abs( hspd ) &lt;= shellspd ) {
-    var face = facing;
-    var spdh = hspd;
-    var spdv = -pvspd * vbounce;
-    instance_change( obj_shell, true );
-    facing = face;
-    hspd = spdh;
-    vspd = spdv;
+        (vspd &gt;= 0 &amp;&amp; place_meeting( x, y+1, obj_ground )) ) ) {
+    instance_destroy();
     exit;
 }
 
@@ -197,14 +178,22 @@ if( abs( vspd ) &lt;= tooslow ) {
 
 // Die after stopped a bit
 if( x == xprevious &amp;&amp; y == yprevious ) {
-    if( fps != 0 ) {
-        dtime += 1 / fps;
-    }
+    dtime += 1 / room_speed;
     if( dtime &gt;= ddead ) {
         instance_destroy();
+        exit;
     }
 } else {
     dtime = 0;
+}
+
+// Die after a certain distance from your starting point
+// Only if you provided one...
+if( ddist != -1 ) {
+    if( abs( x - xstr ) &gt;= ddist ) {
+        instance_destroy();
+        exit;
+    }
 }
 </string>
           </argument>
