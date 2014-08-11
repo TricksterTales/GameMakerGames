@@ -25,23 +25,48 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Surround the room
+            <string>/// Init input handling
 
-var r = 16;
-var w = ceil( room_width / r );
-var h = ceil( room_height / r );
+// Start the variables
+scr_input_begin();
 
-// Place blocks on the top and bottom
-for( i = 0; i &lt; w; ++i ) {
-    instance_create( i * r, -r, obj_block );
-    instance_create( i * r, h * r, obj_block );
-}
+// Use the controller (if possible)
+scr_input_setInput( CONTROLLER );
 
-// Place on the sides
-for( i = 0; i &lt; h; ++i ) {
-    instance_create( -r, i * r, obj_block );
-    instance_create( w * r, i * r, obj_block );
-}
+// Set the threshold
+scr_input_setThreshold( 0.5 );
+
+// Check every second for controller
+inputTime = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Init global variables
+
+//One block = 16 x 16 pixels
+global.block = 16;
+
+// Scale gravity for fps other than 60
+global.grav = 20.0 * 60 / (room_speed*room_speed);
+// Max vertical speed (going down)
+global.vmax = 384.0 / room_speed;
 </string>
           </argument>
         </arguments>
@@ -66,6 +91,31 @@ for( i = 0; i &lt; h; ++i ) {
 
 // Max counts
 max_bullet = 30;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Go to the first level
+
+if( room == rm_load ) {
+    room_goto_next();
+}
 </string>
           </argument>
         </arguments>
@@ -131,7 +181,7 @@ scr_input_updateButtons();
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="2">
+    <event eventtype="7" enumb="4">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -148,19 +198,23 @@ scr_input_updateButtons();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Init input handling
+            <string>/// Surround the room
 
-// Start the variables
-scr_input_begin();
+var r = 16;
+var w = ceil( room_width / r );
+var h = ceil( room_height / r );
 
-// Use the controller (if possible)
-scr_input_setInput( CONTROLLER );
+// Place blocks on the top and bottom
+for( i = 0; i &lt; w; ++i ) {
+    instance_create( i * r, -r, obj_invblock );
+    instance_create( i * r, h * r, obj_invblock );
+}
 
-// Set the threshold
-scr_input_setThreshold( 0.5 );
-
-// Check every second for controller
-inputTime = 0;
+// Place on the sides
+for( i = 0; i &lt; h; ++i ) {
+    instance_create( -r, i * r, obj_invblock );
+    instance_create( w * r, i * r, obj_invblock );
+}
 </string>
           </argument>
         </arguments>

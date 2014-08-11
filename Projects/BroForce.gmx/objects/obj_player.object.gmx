@@ -27,16 +27,23 @@
             <kind>1</kind>
             <string>/// Start the variables
 
-grav = 20.0 * 60 / (room_speed*room_speed);
+// Normal variables
+grav = global.grav;
 wspd = 144.0 / room_speed;
-jspd = 352.0 / room_speed;
+jspd = 352.0 / room_speed;    //288.0
 hspd = 0;
-hdebt = 0;
 vspd = 0;
-vdebt = 0;
-vmax = 384.0 / room_speed;
+vmax = global.vmax;
 facing = 1;
 onground = false;
+
+// More precise position
+hdebt = 0;
+vdebt = 0;
+
+// Higher jumping
+jgrav = 0.5;
+jmore = false;
 
 // Step Event variables
 h = 0;
@@ -46,7 +53,7 @@ ystep = 0;
 // Firing variables
 fhspd = 352.0 / room_speed;
 fvspd = 4.0 / room_speed;
-flen = 8.0;
+flen = 0;
 fdist = 192.0;
 fdelay = 0.15;
 ftime = 0;
@@ -106,7 +113,8 @@ if( facing == -1 ) {
 
 var k_hor = scr_input_getHor();
 var k_ver = scr_input_getVert();
-var k_jump = scr_input_getButtonPressed( BTN_JUMP );
+var k_jumpp = scr_input_getButtonPressed( BTN_JUMP );
+var k_jumpr = scr_input_getButtonReleased( BTN_JUMP );
 var k_fire = scr_input_getButton( BTN_FIRE );
 
 // Falling or jumping?
@@ -114,10 +122,24 @@ if( place_meeting( x, y+1, obj_ground ) ) {
     onground = true;
     vspd = 0;
     vdebt = 0;
-    if( k_jump ) {
+    
+    // Handle jumping
+    if( k_jumpp ) {
         vspd = -jspd;
+        jmore = true;
+    } else {
+        jmore = false;
     }
 } else {
+    // Stop jump control when you're going down
+    if( vspd &gt;= 0 ) { 
+        jmore = false;
+    }
+    // Jump normally, unless you release
+    if( k_jumpr &amp;&amp; jmore ) {
+        vspd = vspd * jgrav;
+    }
+    // Normal physics
     onground = false;
     vspd += grav;
     if( vspd &gt; vmax ) {

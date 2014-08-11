@@ -27,12 +27,12 @@
             <kind>1</kind>
             <string>/// Start the variables
 
-grav = 0.35 / room_speed;
+grav = global.grav;
 hspd = 0;
 hdebt = 0;
 vspd = 0;
 vdebt = 0;
-vmax = 5 / room_speed;
+vmax = global.vmax;
 facing = 1;
 onground = false;
 

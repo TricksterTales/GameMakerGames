@@ -7,10 +7,23 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_ground</sprite>
     <sprite>sprites\spr_controllers</sprite>
-    <sprite>sprites\spr_default</sprite>
-    <sprite>sprites\spr_bullet</sprite>
+    <sprites name="Special">
+      <sprites name="Effect">
+        <sprite>sprites\spr_explosion</sprite>
+      </sprites>
+    </sprites>
+    <sprites name="Things">
+      <sprite>sprites\spr_default</sprite>
+      <sprites name="Bullet">
+        <sprite>sprites\spr_bullet</sprite>
+      </sprites>
+    </sprites>
+    <sprites name="Ground">
+      <sprites name="Solid">
+        <sprite>sprites\spr_ground</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\tiles_ground</background>
@@ -41,6 +54,7 @@
       <objects name="Solid">
         <object>objects\obj_ground_solid</object>
         <object>objects\obj_block</object>
+        <object>objects\obj_invblock</object>
       </objects>
     </objects>
     <objects name="Things">
@@ -49,8 +63,15 @@
         <object>objects\obj_bullet</object>
       </objects>
     </objects>
+    <objects name="Special">
+      <objects name="Effect">
+        <object>objects\obj_effect</object>
+        <object>objects\obj_explosion</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_load</room>
     <room>rooms\rm_test</room>
   </rooms>
   <constants number="5">

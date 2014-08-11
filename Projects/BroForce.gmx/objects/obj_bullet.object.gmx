@@ -3,7 +3,7 @@
   <spriteName>spr_bullet</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>-15</depth>
   <persistent>0</persistent>
   <parentName>obj_thing</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -47,6 +47,34 @@ ddead = 5;
 tooslow = 0;
 dtime = 0;
 ddist = -1;
+
+// Bullet values
+dmg = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Create an explosion
+
+instance_create( x, y, obj_explosion );
 </string>
           </argument>
         </arguments>
@@ -128,21 +156,23 @@ if( abs(hdebt) &gt;= 1 ) {
     h -= sign(hdebt);
     hdebt -= sign(hdebt);
 }
+// If you will run into a wall
 if( place_meeting( x + h, y, obj_ground ) ) {
+    // Move to the wall
     while( !place_meeting( x + sign(h), y, obj_ground ) ) {
         x += sign(h);
     }
-    hspd = 0;
-    h = 0;
-    hdebt = 0;
-}
-x += h;
-
-// Hit a wall, destroy
-if( hspd == 0 &amp;&amp; phspd != 0 ) {
+    // Apply damage to the wall you hit
+    var wall = instance_place( x + sign(h), y, obj_ground );
+    wall.dmg = dmg;
+    with( wall ) {
+        hth = max( 0, hth - dmg );
+    }
+    // Destroy
     instance_destroy();
     exit;
 }
+x += h;
 
 // Vertical movement
 v = round(vspd);
@@ -151,19 +181,20 @@ if( abs(vdebt) &gt;= 1 ) {
     v -= sign(vdebt);
     vdebt -= sign(vdebt);
 }
+// If you will run into a wall
 if( place_meeting( x, y + v, obj_ground ) ) {
+    // Move to the wall
     while( !place_meeting( x, y + sign(v), obj_ground ) ) {
         y += sign(v);
     }
-    vspd = 0;
-    v = 0;
-    vdebt = 0;
+    // Destroy
+    instance_destroy();
+    exit;
 }
 y += v;
 
-// Hit ground or up, destroy
-if( ( (vspd == 0 &amp;&amp; pvspd != 0) ||
-        (vspd &gt;= 0 &amp;&amp; place_meeting( x, y+1, obj_ground )) ) ) {
+// If going into the ground, destroy
+if( vspd &gt;= 0 &amp;&amp; place_meeting( x, y+1, obj_ground ) ) {
     instance_destroy();
     exit;
 }
